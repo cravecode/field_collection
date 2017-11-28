@@ -1520,7 +1520,7 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
   if (field_collection_item_is_translatable()) {
     $handler = entity_translation_get_handler('field_collection_item', $field_collection_item);
     $element_values = &drupal_array_get_nested_value($form_state['values'], $element['#parents']);
-    $element_form_state = array('values' => &$element_values[$element['#delta']]);
+    $element_form_state = array('values' => &$element_values);
     $handler->entityFormLanguageWidgetSubmit($element, $element_form_state);
   }
 
