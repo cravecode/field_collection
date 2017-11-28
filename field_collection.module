@@ -1519,7 +1519,7 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
   // Handle a possible language change.
   if (field_collection_item_is_translatable()) {
     $handler = entity_translation_get_handler('field_collection_item', $field_collection_item);
-    $element_values = &drupal_array_get_nested_value($form_state['values'], $field_state['array_parents']);
+    $element_values = &drupal_array_get_nested_value($form_state['values'], $element['#parents']);
     $element_form_state = array('values' => &$element_values[$element['#delta']]);
     $handler->entityFormLanguageWidgetSubmit($element, $element_form_state);
   }
@@ -1544,7 +1544,7 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
           // The field we're looking at is always 3 levels deeper than field
           // collection field.
           $field_depth = count($elements['#field_parents']) + 3;
-          $field_values = drupal_array_get_nested_value($form_state['values'], array_slice($elements['#array_parents'], 0, $field_depth));
+          $field_values = drupal_array_get_nested_value($form_state['values'], array_slice($elements['#parents'], 0, $field_depth));
 
           // Special case lists since we don't get the correct array_parents.
           if (count($elements['#array_parents']) < $field_depth && is_array($field_values)) {
